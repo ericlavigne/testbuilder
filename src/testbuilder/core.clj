@@ -2,7 +2,7 @@
   (:import (net.java.textilej.parser.builder HtmlDocumentBuilder))
   (:import (net.java.textilej.parser MarkupParser))
   (:import (net.java.textilej.parser.markup.textile TextileDialect))
-  (:use compojure.core, ring.adapter.jetty)
+  (:use compojure.core, ring.adapter.jetty, hiccup.core)
   (:require [compojure.route :as route]))
 
 ; http://www.textism.com/tools/textile/index.php
@@ -15,8 +15,17 @@
 		 (.parse textile false))]
     (.toString out)))
 
+(defn index-view [code] 
+    (html [:form {:action "/" :method "POST" } 
+        [:textarea {:name "code" :rows "20" :cols "70"} code] 
+	[:br] 
+	[:input {:type "Submit" :value "Convert to HTML" }]
+	[:div (textile-to-html-fragment code)]]))
+
+
 (defroutes main-routes
-  (GET "/" [] "<h1>Test Builder</h1>")
+  (GET "/" [] (index-view ""))
+  (POST "/" {params :params} (index-view (params "code")))
   (route/not-found "<h1>Page not found</h1>"))
 
 ; lein run testbuilder.core run-server

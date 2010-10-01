@@ -4,7 +4,9 @@ FIXME: write description
 
 ## Usage
 
-FIXME: write
+to run the code
+
+lein run testbuilder.core run-server
 
 ## Installation
 

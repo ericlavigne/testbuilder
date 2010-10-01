@@ -7,6 +7,7 @@
 		 [ring/ring-servlet "0.3.0"]
 		 [ring/ring-jetty-adapter "0.3.0"]
 		 [ring/ring-devel "0.3.0"]
-		 [hiccup "0.3.0"]]
+		 [hiccup "0.3.0"]
+		 [sandbar "0.3.0-SNAPSHOT"]]
   :dev-dependencies [[lein-run "1.0.0"]]
   :repositories {"java.net" "http://download.java.net/maven/2"})
